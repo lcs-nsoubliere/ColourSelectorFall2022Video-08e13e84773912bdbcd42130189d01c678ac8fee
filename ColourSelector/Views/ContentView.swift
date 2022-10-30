@@ -29,7 +29,7 @@ struct ContentView: View {
                      saturation: 0.8,
                      brightness: 0.9)
     }
-
+    
     // Interface
     var body: some View {
         VStack(spacing: 20){
@@ -50,7 +50,7 @@ struct ContentView: View {
                            label: { Text("Hue") },
                            minimumValueLabel: { Text("0") },
                            maximumValueLabel: { Text("360") })
-                     
+                    
                 }
             }
             
@@ -61,26 +61,28 @@ struct ContentView: View {
                 Spacer()
                 
                 Button(action: { //save the current palette
-                    
-                },
-                       label: {
+                    SavedPalette()
+                }, label: {
                     Text("Save")
-                    .font(.subheadline.smallCaps())
-                          })
+                        .font(.subheadline.smallCaps())
+                })
                 .buttonStyle(.bordered)
             }
-          
-            Spacer()
+            
+            List(savedPalettes) { palette in
+                MonochromaticPaletteView(hue: palette.hue,
+                                         showTitle: false)
+            }
             
         }
         .padding()
     }
     
     //MARK: Functions
-    func savedPalette() {
-        let newPalette = savedPalette(hue: hue)
+    func SavedPalette() {
+        let newPalette = SavedPalette(hue: hue)
             .savedPalettes.append(newPalette)
-        print(
+        print(savedPalettes)
     }
 }
 

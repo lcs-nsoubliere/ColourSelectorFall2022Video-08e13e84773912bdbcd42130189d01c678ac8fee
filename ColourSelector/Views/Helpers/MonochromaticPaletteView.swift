@@ -11,6 +11,8 @@ struct MonochromaticPaletteView: View {
     
     //MARK: Stored Properties
     var hue: Double
+    var showTitle: Bool = true
+    
     //MARK: Computed propeties
     // Make the colour that SwiftUI will use to set the background of the colour swatch
     private var baseColour: Color {
@@ -36,9 +38,11 @@ struct MonochromaticPaletteView: View {
        
         VStack(alignment: .leading){
             
-            Text("Monochromatic")
-                .font(.title3)
-                .bold()
+            if showTitle {
+                Text("Monochromatic")
+                    .font(.title3)
+                    .bold()
+            }
             
             HStack(spacing: 0) {
                 
@@ -57,6 +61,7 @@ struct MonochromaticPaletteView: View {
 
 struct MonochromaticPaletteView_Previews: PreviewProvider {
     static var previews: some View {
-        MonochromaticPaletteView(hue: 0.0)
+        MonochromaticPaletteView(hue: 0.0, showTitle: true)
+        MonochromaticPaletteView(hue: 0.0, showTitle: false)
     }
 }
