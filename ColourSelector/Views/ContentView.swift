@@ -12,6 +12,11 @@ struct ContentView: View {
     // MARK: Stored properties
     @State private var selectedHue = 0.0
     
+    
+    // Our list of monochromatic colour palettes
+    @State private var savedPalettes: [SavedPalette] = [] //empty
+    
+    
     // MARK: Computed properties
     
     // The selected hue expressed as a value between 0.0 and 1.0
@@ -50,13 +55,32 @@ struct ContentView: View {
             }
             
             //Monochromatic Palette
-            MonochromaticPaletteView(hue: hue)
+            HStack{
+                MonochromaticPaletteView(hue: hue)
+                
+                Spacer()
+                
+                Button(action: { //save the current palette
+                    
+                },
+                       label: {
+                    Text("Save")
+                    .font(.subheadline.smallCaps())
+                          })
+                .buttonStyle(.bordered)
+            }
           
             Spacer()
             
-            
         }
         .padding()
+    }
+    
+    //MARK: Functions
+    func savedPalette() {
+        let newPalette = savedPalette(hue: hue)
+            .savedPalettes.append(newPalette)
+        print(
     }
 }
 
